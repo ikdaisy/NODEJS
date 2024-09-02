@@ -32,6 +32,19 @@ http.createServer((req,res)=>{
         });
         
     }
+    else if(newUrl.pathname=="/about"){
+        fs.readFile("./pages/about.html",(error,data)=>{
+            if(error){
+                res.writeHead(404,{"Content-Type":"text/html"});
+                return res.end("Page Not Found")
+
+            }
+            res.writeHead(200,{"Content-Type":"text/html"})
+            res.write(data)
+            res.end()
+        });
+        
+    }
     else{
         fs.readFile("./pages/error.html",(error,data)=>{
             if(error){
@@ -46,4 +59,4 @@ http.createServer((req,res)=>{
         
     }
     
-}).listen(3000)
+}).listen(3001)
